@@ -1,5 +1,42 @@
 {
   "nodes": {
+    "astal": {
+      "inputs": {
+        "astal": "astal_2",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1758876962,
+        "narHash": "sha256-cvcd4IwAgPex3e99e+NMqIMmXNe1FH27eR5JP0o20Gs=",
+        "path": "/home/jun2040/.config/astal",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/jun2040/.config/astal",
+        "type": "path"
+      }
+    },
+    "astal_2": {
+      "inputs": {
+        "nixpkgs": [
+          "astal",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1757497936,
+        "narHash": "sha256-BSfvr7wdY5SbathVlrOW7vCyI9UGVIe2b9rTJ0O5IKo=",
+        "owner": "aylur",
+        "repo": "astal",
+        "rev": "344a6dce56437a190b99e516a6cab8332cccf19e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aylur",
+        "repo": "astal",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -23,7 +60,7 @@
     "nixCats": {
       "inputs": {
         "nixCats": "nixCats_2",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1757409826,
@@ -56,6 +93,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1758690382,
+        "narHash": "sha256-NY3kSorgqE5LMm1LqNwGne3ZLMF2/ILgLpFr1fS4X3o=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e643668fd71b949c53f8626614b21ff71a07379d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1756381814,
         "narHash": "sha256-tzo7YvAsGlzo4WiIHT0ooR59VHu+aKRQdHk7sIyoia4=",
         "owner": "nixos",
@@ -70,7 +123,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1755615617,
         "narHash": "sha256-HMwfAJBdrr8wXAkbGhtcby1zGFvs+StOp19xNsbqdOg=",
@@ -88,9 +141,10 @@
     },
     "root": {
       "inputs": {
+        "astal": "astal",
         "home-manager": "home-manager",
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       }
     }
   },

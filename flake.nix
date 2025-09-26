@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    astal.url = "path:/home/jun2040/.config/astal";
     nixCats.url = "github:bkjn2040/nvim-config";
   };
 
