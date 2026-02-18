@@ -48,6 +48,10 @@
 	disable_hyprland_logo = true;
         background_color = "0xB3EBF2";
       };
+      monitor = [
+        "DP-2,1920x1080@144,0x0,1"
+        "HDMI-A-1,1920x1080@60,-1920x0,1"
+      ];
     };
   };
 }
