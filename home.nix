@@ -21,6 +21,8 @@
     inputs.astal.packages."x86_64-linux".default
     inputs.nixCats.packages."x86_64-linux".nixCats
     (pkgs.python311.withPackages (ppkgs: [
+      ppkgs.tqdm
+      ppkgs.bqplot
       ppkgs.numpy
       ppkgs.scipy
       ppkgs.matplotlib
