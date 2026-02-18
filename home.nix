@@ -28,6 +28,8 @@
     ]))
     pkgs.scala
     pkgs.sbt
+    pkgs.gcc
+    pkgs.cmake
   ];
 
   programs.hyprpanel = {
