@@ -87,130 +87,21 @@
     systemd.enable = true;
   };
 
-  programs.ssh = {
-    enable = true;
-    extraConfig = ''
-      Host github.com
-        HostName github.com
-        IdentityFile ~/.ssh/id_ed25519_personal
-
-      Host work.github.com
-        HostName github.com
-        IdentityFile ~/.ssh/id_ed25519_work
-
-      Host school.gitlab.com
-        HostName gitlab.epfl.ch
-        IdentityFile ~/.ssh/id_ed25519_school
-    '';
-  };
-
-  programs.git = {
-    enable = true;
-    userEmail = "bkjn415@gmail.com";
-    userName = "bkjn2040";
-  };
-
-  programs.kitty = {
-    enable = true;
-    font = {
-      name = "JetBrainsMono Nerd Font";
-      package = pkgs.nerd-fonts.jetbrains-mono;
-    };
-  };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = true;
-      format = "[](#9A348E)$os$username[](bg:#DA627D fg:#9A348E)$directory[](fg:#DA627D bg:#FCA17D)$git_branch$git_status[](fg:#FCA17D bg:#86BBD8)$c$elixir$elm$golang$gradle$haskell$java$julia$nodejs$nim$rust$scala[](fg:#86BBD8 bg:#06969A)$docker_context[](fg:#06969A bg:#33658A)$time[ ](fg:#33658A)";
-      username = {
-        show_always = true;
-        style_user = "bg:#9A348E";
-        style_root = "bg:#9A348E";
-        format = "[$user ]($style)";
-        disabled = false;
-      };
-      os = {
-        style = "bg:#9A348E";
-        disabled = true;
-      };
-      directory = {
-        style = "bg:#DA627D";
-        format = "[ $path ]($style)";
-        truncation_length = 3;
-        truncation_symbol = "…/";
-        substitutions = {
-          Documents = "󰈙 ";
-          Downloads = " ";
-          Music = " ";
-          Pictures = " ";
-        };
-      };
-    };
-  };
-
-  programs.tmux = {
-    enable = true;
-  };
-
-  programs.firefox = {
-    enable = true;
-  };
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    package = null;
-    portalPackage = null;
-    settings = {
-      exec-once = "hyprpanel";
-      "$mod" = "SUPER";
-      bind = [
-        "$mod, F, exec, firefox"
-	"$mod, Q, exit"
-	"$mod, RETURN, exec, kitty"
-	"$mod, C, killactive"
-
-	"$mod, H, movefocus, l"
-	"$mod, J, movefocus, d"
-	"$mod, K, movefocus, u"
-	"$mod, L, movefocus, r"
-
-	"$mod SHIFT, H, movewindow, l"
-	"$mod SHIFT, J, movewindow, d"
-	"$mod SHIFT, K, movewindow, u"
-	"$mod SHIFT, L, movewindow, r"
-
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-
-        "$mod CTRL, H, workspace, r-1"
-        "$mod CTRL, L, workspace, r+1"
-      ];
-      general = {
-        gaps_in  = 4;
-	gaps_out = "0,16,16,16";
-      };
-      input = {
-        natural_scroll = true;
-      };
-      decoration = {
-        rounding = 8;
-      };
-      misc = {
-        disable_splash_rendering = true;
-	disable_hyprland_logo = true;
-        background_color = "0xB3EBF2";
-      };
-    };
-  };
-
   programs.obsidian = {
     enable = true;
   };
 
+  imports = [
+    ./desktop/hyprland
+    ./desktop/starship
+    ./desktop/tmux
+
+    ./software/kitty
+    ./software/firefox
+    ./software/git
+    ./software/ssh
+  ];
+ 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
