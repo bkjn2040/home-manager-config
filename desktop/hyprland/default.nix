@@ -38,7 +38,7 @@
 	gaps_out = "0,16,16,16";
       };
       input = {
-        natural_scroll = true;
+        natural_scroll = false;
       };
       decoration = {
         rounding = 8;
