@@ -42,6 +42,8 @@
       };
       input = {
         natural_scroll = false;
+        sensitivity = -0.1;
+        accel_profile = "flat";
       };
       decoration = {
         rounding = 8;
