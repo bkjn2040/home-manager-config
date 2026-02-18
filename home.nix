@@ -101,8 +101,8 @@
     ./software/git
     ./software/ssh
   ];
- 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+
+  # Home Manager is pretty goo at managing otfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
