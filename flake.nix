@@ -9,7 +9,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    astal.url = "path:/home/jun2040/.config/astal";
+    # astal.url = "path:/home/jun2040/.config/astal";
+    # astal.url = "path:/home/jun2040/.config/astal-bar";
+
+    astal.url = "github:aylur/astal";
+
+    ags.url = "github:aylur/ags";
+
     nixCats.url = "github:bkjn2040/nvim-config";
   };
 
@@ -17,7 +23,8 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      # pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import inputs.nixpkgs { inherit system; config.allowUnfree = true; };
     in
     {
       homeConfigurations."jun2040" = home-manager.lib.homeManagerConfiguration {

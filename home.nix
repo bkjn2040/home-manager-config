@@ -18,7 +18,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # inputs.astal.packages."x86_64-linux".default
+    inputs.astal.packages."x86_64-linux".default
     inputs.nixCats.packages."x86_64-linux".nixCats
     (pkgs.python311.withPackages (ppkgs: [
       ppkgs.numpy
@@ -26,7 +26,62 @@
       ppkgs.matplotlib
       ppkgs.jupyterlab
     ]))
+    pkgs.scala
+    pkgs.sbt
   ];
+
+  programs.hyprpanel = {
+    enable = true;
+
+    # Configure and theme almost all options from the GUI.
+    # See 'https://hyprpanel.com/configuration/settings.html'.
+    # Default: <same as gui>
+    settings = {
+      # Configure bar layouts for monitors.
+      # See 'https://hyprpanel.com/configuration/panel.html'.
+      # Default: null
+      layout = {
+        bar.layouts = {
+          "0" = {
+            left = [ "dashboard" "workspaces" ];
+            middle = [ "media" ];
+            right = [ "volume" "systray" "notifications" ];
+          };
+        };
+      };
+
+      bar.launcher.autoDetectIcon = true;
+      bar.workspaces.show_icons = true;
+
+      menus.clock = {
+        time = {
+          military = true;
+          hideSeconds = true;
+        };
+        weather.unit = "metric";
+      };
+
+      menus.dashboard.directories.enabled = false;
+      menus.dashboard.stats.enable_gpu = true;
+
+      theme.bar = {
+        transparent = true;
+        floating = true;
+        outer_spacing = "0px";
+        buttons.y_margins = "0px";
+        margin_top = "4px";
+        margin_sides = "0px";
+        margin_bottom = "4px";
+      };
+
+      theme.font = {
+        name = "CaskaydiaCove NF";
+        size = "16px";
+      };
+    };
+
+    systemd.enable = true;
+  };
 
   programs.ssh = {
     enable = true;
@@ -35,11 +90,11 @@
         HostName github.com
         IdentityFile ~/.ssh/id_ed25519_personal
 
-      Host github-work
+      Host work.github.com
         HostName github.com
         IdentityFile ~/.ssh/id_ed25519_work
 
-      Host gitlab-school
+      Host school.gitlab.com
         HostName gitlab.epfl.ch
         IdentityFile ~/.ssh/id_ed25519_school
     '';
@@ -103,6 +158,7 @@
     package = null;
     portalPackage = null;
     settings = {
+      exec-once = "hyprpanel";
       "$mod" = "SUPER";
       bind = [
         "$mod, F, exec, firefox"
@@ -130,17 +186,25 @@
         "$mod CTRL, L, workspace, r+1"
       ];
       general = {
-        gaps_in  = 10;
-	gaps_out = 20;
+        gaps_in  = 4;
+	gaps_out = "0,16,16,16";
       };
       input = {
         natural_scroll = true;
       };
+      decoration = {
+        rounding = 8;
+      };
       misc = {
         disable_splash_rendering = true;
 	disable_hyprland_logo = true;
+        background_color = "0xB3EBF2";
       };
     };
+  };
+
+  programs.obsidian = {
+    enable = true;
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
