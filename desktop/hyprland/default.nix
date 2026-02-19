@@ -12,6 +12,7 @@
       "$mod" = "SUPER";
       bind = [
         "$mod, F, exec, firefox"
+        "$mod, SPACE, exec, nc -U /run/user/1000/walker/walker.sock"
 	"$mod, Q, exit"
 	"$mod, RETURN, exec, kitty"
 	"$mod, C, killactive"
