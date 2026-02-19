@@ -7,7 +7,6 @@
     portalPackage = null;
     settings = {
       exec-once = [
-        "hyprpanel"
         "hyprctl setcursor Bibata-Modern-Ice 16"
       ];
       "$mod" = "SUPER";

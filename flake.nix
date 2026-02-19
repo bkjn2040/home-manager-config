@@ -12,6 +12,13 @@
     # astal.url = "path:/home/jun2040/.config/astal";
     # astal.url = "path:/home/jun2040/.config/astal-bar";
 
+    elephant.url = "github:abenz1267/elephant";
+
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.elephant.follows = "elephant";
+    };
+
     astal.url = "github:aylur/astal";
 
     ags.url = "github:aylur/ags";

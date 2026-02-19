@@ -32,6 +32,7 @@
     pkgs.sbt
     pkgs.gcc
     pkgs.cmake
+    pkgs.guitarix
   ];
 
   
@@ -42,6 +43,7 @@
   imports = [
     ./desktop/hyprland
     ./desktop/hyprpanel
+    ./desktop/walker
     ./desktop/starship
     ./desktop/tmux
 
