@@ -51,6 +51,7 @@
     ./software/firefox
     ./software/git
     ./software/ssh
+    ./software/ticktick
   ];
 
   # Home Manager is pretty goo at managing otfiles. The primary way to manage
