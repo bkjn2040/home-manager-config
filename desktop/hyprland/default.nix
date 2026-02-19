@@ -5,13 +5,27 @@
     enable = true;
     package = null;
     portalPackage = null;
+    extraConfig = ''
+      bind = $mod, W, submap, workspace
+      bind = $mod, S, submap, resize
+      submap = workspace
+        bindrti = , W, submap, reset
+        bindi = , H, movetoworkspace, r-1
+        bindi = , L, movetoworkspace, r+1
+      submap = resize
+        bindrti = , S, submap, reset
+        bindei = , H, resizeactive, -20 0
+        bindei = , L, resizeactive, 20 0
+        bindei = , K, resizeactive, 0 -20
+        bindei = , J, resizeactive, 0 20
+      submap = reset
+    '';
     settings = {
       exec-once = [
         "hyprctl setcursor Bibata-Modern-Ice 16"
       ];
       "$mod" = "SUPER";
       bind = [
-        "$mod, F, exec, firefox"
         "$mod, SPACE, exec, nc -U /run/user/1000/walker/walker.sock"
 	"$mod, Q, exit"
 	"$mod, RETURN, exec, kitty"
@@ -27,14 +41,20 @@
 	"$mod SHIFT, K, movewindow, u"
 	"$mod SHIFT, L, movewindow, r"
 
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
+        "$mod, 1, workspace, r~1"
+        "$mod, 2, workspace, r~2"
+        "$mod, 3, workspace, r~3"
+        "$mod, 4, workspace, r~4"
+        "$mod, 5, workspace, r~5"
 
-        "$mod CTRL, H, workspace, r-1"
-        "$mod CTRL, L, workspace, r+1"
+        "$mod SHIFT, 1, movetoworkspace, r~1"
+        "$mod SHIFT, 2, movetoworkspace, r~2"
+        "$mod SHIFT, 3, movetoworkspace, r~3"
+        "$mod SHIFT, 4, movetoworkspace, r~4"
+        "$mod SHIFT, 5, movetoworkspace, r~5"
+
+        "$mod SHIFT, TAB, workspace, r-1"
+        "$mod, TAB, workspace, r+1"
       ];
       general = {
         gaps_in  = 4;
