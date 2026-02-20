@@ -47,6 +47,7 @@
     ./desktop/starship
     ./desktop/tmux
 
+    ./software/discord
     ./software/kitty
     ./software/firefox
     ./software/git
