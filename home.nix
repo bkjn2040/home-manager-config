@@ -33,6 +33,8 @@
     pkgs.gcc
     pkgs.cmake
     pkgs.guitarix
+
+    pkgs.pwvucontrol
   ];
 
   
@@ -48,6 +50,7 @@
     ./desktop/tmux
 
     ./software/discord
+    ./software/spotify
     ./software/kitty
     ./software/firefox
     ./software/git
