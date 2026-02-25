@@ -33,6 +33,7 @@
     pkgs.gcc
     pkgs.cmake
     pkgs.guitarix
+    pkgs.feh
   ];
 
   
