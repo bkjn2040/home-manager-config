@@ -7,8 +7,13 @@
     portalPackage = null;
     extraConfig = ''
       bind = $mod, W, submap, workspace
+      bind = $mod SHIFT, W, submap, editworkspace
       bind = $mod, S, submap, resize
       submap = workspace
+        bindrti = , W, submap, reset
+        bindi = , H, workspace, r-1
+        bindi = , L, workspace, r+1
+      submap = editworkspace
         bindrti = , W, submap, reset
         bindi = , H, movetoworkspace, r-1
         bindi = , L, movetoworkspace, r+1
@@ -52,9 +57,6 @@
         "$mod SHIFT, 3, movetoworkspace, r~3"
         "$mod SHIFT, 4, movetoworkspace, r~4"
         "$mod SHIFT, 5, movetoworkspace, r~5"
-
-        "$mod SHIFT, TAB, workspace, r-1"
-        "$mod, TAB, workspace, r+1"
       ];
       general = {
         gaps_in  = 4;
