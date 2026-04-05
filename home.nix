@@ -36,11 +36,6 @@
     pkgs.feh
   ];
 
-  
-  programs.obsidian = {
-    enable = true;
-  };
-
   imports = [
     ./desktop/hyprland
     ./desktop/hyprpanel
