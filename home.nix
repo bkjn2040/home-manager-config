@@ -18,8 +18,8 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    inputs.astal.packages."x86_64-linux".default
     inputs.nixCats.packages."x86_64-linux".nixCats
+
     (pkgs.python311.withPackages (ppkgs: [
       ppkgs.tqdm
       ppkgs.bqplot
