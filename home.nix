@@ -53,6 +53,7 @@
     ./software/git
     ./software/ssh
     ./software/ticktick
+    ./software/superproductivity
   ];
 
   # Home Manager is pretty goo at managing otfiles. The primary way to manage
