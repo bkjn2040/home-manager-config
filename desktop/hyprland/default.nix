@@ -66,6 +66,8 @@
         natural_scroll = false;
         sensitivity = -0.1;
         accel_profile = "flat";
+        kb_layout = "us,kr";
+        kb_options = "grp:alt_shift_toggle";
       };
       decoration = {
         rounding = 8;
