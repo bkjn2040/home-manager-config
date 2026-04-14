@@ -35,6 +35,14 @@
     pkgs.guitarix
 
     pkgs.pwvucontrol
+    pkgs.mpv
+    pkgs.smplayer
+
+    pkgs.grim
+    pkgs.slurp
+    pkgs.wl-clipboard
+
+    pkgs.feh
   ];
 
   
