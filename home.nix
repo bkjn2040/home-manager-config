@@ -18,8 +18,8 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    inputs.astal.packages."x86_64-linux".default
     inputs.nixCats.packages."x86_64-linux".nixCats
+
     (pkgs.python311.withPackages (ppkgs: [
       ppkgs.tqdm
       ppkgs.bqplot
@@ -45,11 +45,6 @@
     pkgs.feh
   ];
 
-  
-  programs.obsidian = {
-    enable = true;
-  };
-
   imports = [
     ./desktop/hyprland
     ./desktop/hyprpanel
@@ -65,6 +60,7 @@
     ./software/ssh
     ./software/ticktick
     ./software/unzip
+    ./software/superproductivity
   ];
 
   # Home Manager is pretty goo at managing otfiles. The primary way to manage
@@ -100,6 +96,10 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+  };
+
+  programs.bash.sessionVariables = {
+    TERM = "xterm-color256";
   };
 
   # Let Home Manager install and manage itself.
