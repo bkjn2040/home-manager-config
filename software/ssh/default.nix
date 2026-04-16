@@ -12,9 +12,9 @@
         HostName github.com
         IdentityFile ~/.ssh/id_ed25519_work
 
-      Host school.gitlab.com
+      Host gitlab.epfl.ch
         HostName gitlab.epfl.ch
-        IdentityFile ~/.ssh/id_ed25519_school
+        IdentityFile ~/.ssh/id_ed25519_epfl
     '';
 
     enableDefaultConfig = false;
