@@ -7,6 +7,8 @@
 - [ ] Navigation between panels using same navigation key as Hyprland
       Hierarchy: Neovim > Tmux > Hyprland
       Navigate in next lower hiearachy if cannot move in current
+    - [x] Neovim Hyprland
+    - [ ] Tmux or Kitty
 - [ ] Search file
 - [ ] Directory view
 

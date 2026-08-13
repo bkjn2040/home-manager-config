@@ -6,6 +6,30 @@ let
   dispatcher = expression: lua expression;
   bind = keys: expression: call [ keys (dispatcher expression) ];
   flaggedBind = keys: expression: flags: call [ keys (dispatcher expression) flags ];
+  smartFocus = direction: key: ''
+    function()
+      local window = hl.get_active_window()
+      local class = window and string.lower(window.class or "") or ""
+      local title = window and (window.title or "") or ""
+
+      if class == "kitty" and string.find(title, "[nvim]", 1, true) then
+        hl.dispatch(hl.dsp.send_key_state({
+          mods = "CTRL",
+          key = "${key}",
+          state = "down",
+          window = window,
+        }))
+        hl.dispatch(hl.dsp.send_key_state({
+          mods = "CTRL",
+          key = "${key}",
+          state = "up",
+          window = window,
+        }))
+      else
+        hl.dispatch(hl.dsp.focus({ direction = "${direction}" }))
+      end
+    end
+  '';
 in
 {
   wayland.windowManager.hyprland = {
@@ -66,10 +90,10 @@ in
         (bind "SUPER + RETURN" ''hl.dsp.exec_cmd("kitty")'')
         (bind "SUPER + C" "hl.dsp.window.close()")
 
-        (bind "SUPER + H" ''hl.dsp.focus({ direction = "l" })'')
-        (bind "SUPER + J" ''hl.dsp.focus({ direction = "d" })'')
-        (bind "SUPER + K" ''hl.dsp.focus({ direction = "u" })'')
-        (bind "SUPER + L" ''hl.dsp.focus({ direction = "r" })'')
+        (bind "SUPER + H" (smartFocus "l" "h"))
+        (bind "SUPER + J" (smartFocus "d" "j"))
+        (bind "SUPER + K" (smartFocus "u" "k"))
+        (bind "SUPER + L" (smartFocus "r" "l"))
 
         (bind "SUPER + SHIFT + H" ''hl.dsp.window.move({ direction = "l" })'')
         (bind "SUPER + SHIFT + J" ''hl.dsp.window.move({ direction = "d" })'')

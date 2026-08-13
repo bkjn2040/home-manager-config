@@ -8,6 +8,8 @@ oil.setup({
     show_hidden = true,
   },
   keymaps = {
+    ["<C-h>"] = false,
+    ["<C-l>"] = false,
     ["q"] = "actions.close",
   },
 })

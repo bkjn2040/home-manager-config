@@ -12,6 +12,7 @@
     plugins = with pkgs.vimPlugins; [
       oil-nvim
       plenary-nvim
+      smart-splits-nvim
       telescope-nvim
     ];
 
