@@ -9,8 +9,8 @@
       Navigate in next lower hiearachy if cannot move in current
     - [x] Neovim Hyprland
     - [ ] Tmux or Kitty
-- [ ] Search file
-- [ ] Directory view
+- [x] Search file
+- [x] Directory view
 
 ## Shell
 - [ ] Install Fish
