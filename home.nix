@@ -18,8 +18,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    inputs.nixCats.packages."x86_64-linux".nixCats
-
     # (pkgs.python311.withPackages (ppkgs: [
     #   ppkgs.tqdm
     #   ppkgs.bqplot
@@ -69,6 +67,7 @@
     ./software/discord
     ./software/spotify
     ./software/kitty
+    ./software/neovim
     ./software/firefox
     ./software/git
     ./software/ssh

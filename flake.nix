@@ -23,7 +23,6 @@
 
     ags.url = "github:aylur/ags";
 
-    nixCats.url = "github:bkjn2040/nvim-config";
   };
 
   outputs =
