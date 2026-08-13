@@ -14,5 +14,7 @@ oil.setup({
 
 vim.keymap.set("n", "-", oil.open, { desc = "Open parent directory" })
 vim.keymap.set("n", "<leader>e", function()
+  vim.cmd("topleft 32vsplit")
   oil.open(vim.fn.getcwd())
-end, { desc = "Open working directory" })
+  vim.wo.winfixwidth = true
+end, { desc = "Open directory sidebar" })
