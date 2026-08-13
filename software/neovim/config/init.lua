@@ -1,3 +1,5 @@
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
+require("plugins.oil")
+require("plugins.telescope")
