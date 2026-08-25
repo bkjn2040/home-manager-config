@@ -36,6 +36,77 @@ in
     enable = true;
     package = null;
     portalPackage = null;
+    extraLuaFiles.workspaces.content = ''
+      local fullscreen_origins = {}
+
+      local function window_key(window)
+        return tostring(window.address)
+      end
+
+      local function workspace_selector(workspace)
+        if workspace == nil then
+          return nil
+        end
+
+        local id = tostring(workspace.id)
+        local name = tostring(workspace.name)
+        return name == id and id or "name:" .. name
+      end
+
+      local function dedicated_workspace(window)
+        return "name:fullscreen-" .. window_key(window)
+      end
+
+      hl.workspace_rule({
+        workspace = "n[s:fullscreen-]",
+        gaps_in = 0,
+        gaps_out = 0,
+      })
+
+      hl.on("window.fullscreen", function(window)
+        if window == nil then
+          return
+        end
+
+        local key = window_key(window)
+        local origin = fullscreen_origins[key]
+        local is_fullscreen = window.fullscreen == 2 or window.fullscreen == 3
+
+        if is_fullscreen and origin == nil then
+          origin = workspace_selector(window.workspace)
+          if origin == nil then
+            return
+          end
+
+          fullscreen_origins[key] = origin
+          hl.dispatch(hl.dsp.window.move({
+            workspace = dedicated_workspace(window),
+            follow = true,
+            window = window,
+          }))
+        elseif not is_fullscreen and origin ~= nil then
+          fullscreen_origins[key] = nil
+          hl.dispatch(hl.dsp.window.move({
+            workspace = origin,
+            follow = true,
+            window = window,
+          }))
+        end
+      end)
+
+      hl.on("window.close", function(window)
+        if window ~= nil then
+          fullscreen_origins[window_key(window)] = nil
+        end
+      end)
+
+      hl.bind("SUPER + F", hl.dsp.window.fullscreen({
+        mode = "fullscreen",
+        action = "toggle",
+      }), {
+        description = "Toggle fullscreen in a dedicated workspace",
+      })
+    '';
 
     # Hyprland 0.55 deprecated hyprlang; 0.56 uses hyprland.lua natively.
     configType = "lua";
