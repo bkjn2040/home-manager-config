@@ -6,12 +6,107 @@ let
   dispatcher = expression: lua expression;
   bind = keys: expression: call [ keys (dispatcher expression) ];
   flaggedBind = keys: expression: flags: call [ keys (dispatcher expression) flags ];
+  smartFocus = direction: key: ''
+    function()
+      local window = hl.get_active_window()
+      local class = window and string.lower(window.class or "") or ""
+      local title = window and (window.title or "") or ""
+
+      if class == "kitty" and string.find(title, "[nvim]", 1, true) then
+        hl.dispatch(hl.dsp.send_key_state({
+          mods = "CTRL",
+          key = "${key}",
+          state = "down",
+          window = window,
+        }))
+        hl.dispatch(hl.dsp.send_key_state({
+          mods = "CTRL",
+          key = "${key}",
+          state = "up",
+          window = window,
+        }))
+      else
+        hl.dispatch(hl.dsp.focus({ direction = "${direction}" }))
+      end
+    end
+  '';
 in
 {
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
     portalPackage = null;
+    extraLuaFiles.workspaces.content = ''
+      local fullscreen_origins = {}
+
+      local function window_key(window)
+        return tostring(window.address)
+      end
+
+      local function workspace_selector(workspace)
+        if workspace == nil then
+          return nil
+        end
+
+        local id = tostring(workspace.id)
+        local name = tostring(workspace.name)
+        return name == id and id or "name:" .. name
+      end
+
+      local function dedicated_workspace(window)
+        return "name:fullscreen-" .. window_key(window)
+      end
+
+      hl.workspace_rule({
+        workspace = "n[s:fullscreen-]",
+        gaps_in = 0,
+        gaps_out = 0,
+      })
+
+      hl.on("window.fullscreen", function(window)
+        if window == nil then
+          return
+        end
+
+        local key = window_key(window)
+        local origin = fullscreen_origins[key]
+        local is_fullscreen = window.fullscreen == 2 or window.fullscreen == 3
+
+        if is_fullscreen and origin == nil then
+          origin = workspace_selector(window.workspace)
+          if origin == nil then
+            return
+          end
+
+          fullscreen_origins[key] = origin
+          hl.dispatch(hl.dsp.window.move({
+            workspace = dedicated_workspace(window),
+            follow = true,
+            window = window,
+          }))
+        elseif not is_fullscreen and origin ~= nil then
+          fullscreen_origins[key] = nil
+          hl.dispatch(hl.dsp.window.move({
+            workspace = origin,
+            follow = true,
+            window = window,
+          }))
+        end
+      end)
+
+      hl.on("window.close", function(window)
+        if window ~= nil then
+          fullscreen_origins[window_key(window)] = nil
+        end
+      end)
+
+      hl.bind("SUPER + F", hl.dsp.window.fullscreen({
+        mode = "fullscreen",
+        action = "toggle",
+      }), {
+        description = "Toggle fullscreen in a dedicated workspace",
+      })
+    '';
 
     # Hyprland 0.55 deprecated hyprlang; 0.56 uses hyprland.lua natively.
     configType = "lua";
@@ -66,10 +161,10 @@ in
         (bind "SUPER + RETURN" ''hl.dsp.exec_cmd("kitty")'')
         (bind "SUPER + C" "hl.dsp.window.close()")
 
-        (bind "SUPER + H" ''hl.dsp.focus({ direction = "l" })'')
-        (bind "SUPER + J" ''hl.dsp.focus({ direction = "d" })'')
-        (bind "SUPER + K" ''hl.dsp.focus({ direction = "u" })'')
-        (bind "SUPER + L" ''hl.dsp.focus({ direction = "r" })'')
+        (bind "SUPER + H" (smartFocus "l" "h"))
+        (bind "SUPER + J" (smartFocus "d" "j"))
+        (bind "SUPER + K" (smartFocus "u" "k"))
+        (bind "SUPER + L" (smartFocus "r" "l"))
 
         (bind "SUPER + SHIFT + H" ''hl.dsp.window.move({ direction = "l" })'')
         (bind "SUPER + SHIFT + J" ''hl.dsp.window.move({ direction = "d" })'')
