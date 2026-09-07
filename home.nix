@@ -50,11 +50,7 @@
 
     pkgs.deskreen
 
-    pkgs.davinci-resolve
-
     pkgs.shotcut
-
-    pkgs.blender
 
     pkgs.codex
   ];
