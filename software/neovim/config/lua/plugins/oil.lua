@@ -1,5 +1,6 @@
 local oil = require("oil")
 local oil_util = require("oil.util")
+local sidebar_width = 32
 
 local function select_in_target_window()
   -- Check if selected is directoryj
@@ -33,6 +34,8 @@ local function select_in_target_window()
   if not target_win or not vim.api.nvim_win_is_valid(target_win) then
     vim.cmd("rightbelow vsplit")
     target_win = vim.api.nvim_get_current_win()
+    vim.api.nvim_win_set_width(oil_win, sidebar_width)
+    vim.wo[oil_win].winfixwidth = true
     vim.api.nvim_set_current_win(oil_win)
     vim.w[oil_win].oil_target_win = target_win
   end
@@ -72,7 +75,7 @@ vim.keymap.set("n", "<leader>e", function()
   end
 
   local target_win = vim.api.nvim_get_current_win()
-  vim.cmd("topleft 32vsplit")
+  vim.cmd("topleft " .. sidebar_width .. "vsplit")
   oil.open(vim.fn.getcwd())
   vim.w.oil_target_win = target_win
   vim.wo.winfixwidth = true
