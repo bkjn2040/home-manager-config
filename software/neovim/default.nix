@@ -28,6 +28,7 @@
         markdown_inline
         nix
         query
+        rust
         scala
         vim
         vimdoc
@@ -50,6 +51,7 @@
       metals
       nixd
       ripgrep
+      rust-analyzer
     ];
   };
 

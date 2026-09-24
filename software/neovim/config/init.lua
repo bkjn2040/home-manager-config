@@ -78,6 +78,7 @@ vim.lsp.enable({
   "lua_ls",
   "metals",
   "nixd",
+  "rust_analyzer",
 })
 
 require("plugins.oil")
