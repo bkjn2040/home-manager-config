@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  luaPackages = pkgs.neovim-unwrapped.lua.pkgs;
+in
 {
   programs.neovim = {
     enable = true;
@@ -8,15 +11,25 @@
     vimAlias = true;
     withPython3 = false;
     withRuby = false;
+    extraWrapperArgs = [
+      "--set-default"
+      "LUA_PATH"
+      "${luaPackages.getLuaPath luaPackages.magick};;"
+      "--set-default"
+      "LUA_CPATH"
+      "${luaPackages.getLuaCPath luaPackages.magick};;"
+    ];
 
     plugins = with pkgs.vimPlugins; [
       cmp-buffer
       cmp-nvim-lsp
       cmp-path
       cmp_luasnip
+      image-nvim
       luasnip
       nvim-cmp
       nvim-lspconfig
+      nvim-web-devicons
       (nvim-treesitter.withPlugins (parsers: with parsers; [
         bash
         c
@@ -36,7 +49,11 @@
       ]))
       oil-nvim
       plenary-nvim
+      telescope-fzf-native-nvim
+      telescope-live-grep-args-nvim
       telescope-nvim
+      telescope-ui-select-nvim
+      telescope-undo-nvim
       tokyonight-nvim
     ];
 
@@ -45,7 +62,9 @@
       bash-language-server
       clang-tools
       cmake-language-server
+      delta
       fd
+      imagemagick
       lua-language-server
       metals
       nixd
