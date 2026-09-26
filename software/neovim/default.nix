@@ -36,7 +36,6 @@
       ]))
       oil-nvim
       plenary-nvim
-      smart-splits-nvim
       telescope-nvim
       tokyonight-nvim
     ];

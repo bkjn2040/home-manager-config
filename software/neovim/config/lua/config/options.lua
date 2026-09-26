@@ -20,8 +20,6 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 
 opt.termguicolors = true
-opt.title = true
-opt.titlestring = "[nvim] %t"
 opt.wrap = false
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"

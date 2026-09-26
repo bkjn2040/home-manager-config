@@ -33,30 +33,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = group,
-  desc = "Configure LSP keymaps",
-  callback = function(event)
-    local map = function(keys, action, description)
-      vim.keymap.set("n", keys, action, {
-        buffer = event.buf,
-        desc = "LSP: " .. description,
-      })
-    end
-
-    map("gd", vim.lsp.buf.definition, "Go to definition")
-    map("gD", vim.lsp.buf.declaration, "Go to declaration")
-    map("gr", vim.lsp.buf.references, "List references")
-    map("gi", vim.lsp.buf.implementation, "Go to implementation")
-    map("K", vim.lsp.buf.hover, "Hover documentation")
-    map("<leader>rn", vim.lsp.buf.rename, "Rename symbol")
-    map("<leader>ca", vim.lsp.buf.code_action, "Code action")
-    map("<leader>cf", function()
-      vim.lsp.buf.format({ async = true })
-    end, "Format buffer")
-  end,
-})
-
 vim.diagnostic.config({
   severity_sort = true,
   underline = true,
