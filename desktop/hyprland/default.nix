@@ -137,6 +137,11 @@ in
         (bind "SUPER + RETURN" ''hl.dsp.exec_cmd("kitty")'')
         (bind "SUPER + C" "hl.dsp.window.close()")
 
+        (bind "SUPER + H" ''hl.dsp.focus({ direction = "l" })'')
+        (bind "SUPER + J" ''hl.dsp.focus({ direction = "d" })'')
+        (bind "SUPER + K" ''hl.dsp.focus({ direction = "u" })'')
+        (bind "SUPER + L" ''hl.dsp.focus({ direction = "r" })'')
+
         (bind "SUPER + SHIFT + H" ''hl.dsp.window.move({ direction = "l" })'')
         (bind "SUPER + SHIFT + J" ''hl.dsp.window.move({ direction = "d" })'')
         (bind "SUPER + SHIFT + K" ''hl.dsp.window.move({ direction = "u" })'')
