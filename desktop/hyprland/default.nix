@@ -131,6 +131,17 @@ in
         }
       ];
 
+      # Keep applications from turning a newly-created tiled window into a
+      # maximized window. Explicit fullscreen requests (such as SUPER + F)
+      # are unaffected.
+      window_rule = [
+        {
+          name = "suppress-maximize-events";
+          match.class = ".*";
+          suppress_event = "maximize";
+        }
+      ];
+
       bind = [
         (bind "SUPER + SPACE" ''hl.dsp.exec_cmd("nc -U /run/user/1000/walker/walker.sock")'')
         (bind "SUPER + Q" ''hl.dsp.exec_cmd("hyprshutdown")'')
