@@ -5,6 +5,24 @@
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
     policies = {
+      Preferences = {
+        "browser.startup.homepage" = {
+          Value = "about:blank";
+          Status = "default";
+          Type = "string";
+        };
+        "browser.startup.page" = {
+          Value = 0;
+          Status = "default";
+          Type = "number";
+        };
+        "browser.newtabpage.enabled" = {
+          Value = false;
+          Status = "default";
+          Type = "boolean";
+        };
+      };
+      OverrideFirstRunPage = "";
       ExtensionSettings = {
         "adguardadblocker@adguard.com" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/adguardadblocker@adguard.com/latest.xpi";
