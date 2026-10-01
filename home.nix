@@ -34,7 +34,14 @@
 
     pkgs.pwvucontrol
     pkgs.mpv
-    pkgs.smplayer
+    # SMPlayer 26.8.29's bundled web server promotes a harmless GCC 16 warning
+    # to an error. Remove the blanket -Werror until upstream fixes the source.
+    (pkgs.smplayer.overrideAttrs (old: {
+      postPatch = (old.postPatch or "") + ''
+        substituteInPlace webserver/Makefile \
+          --replace-fail " -Werror " " "
+      '';
+    }))
 
     pkgs.grim
     pkgs.slurp
@@ -70,6 +77,7 @@
     ./software/ticktick
     ./software/unzip
     ./software/superproductivity
+    ./software/caffeinated-calendar
   ];
 
   # Home Manager is pretty goo at managing otfiles. The primary way to manage

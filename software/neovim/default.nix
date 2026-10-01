@@ -25,6 +25,7 @@ in
       cmp-nvim-lsp
       cmp-path
       cmp_luasnip
+      conform-nvim
       image-nvim
       luasnip
       nvim-cmp
@@ -35,6 +36,10 @@ in
         c
         cmake
         cpp
+        css
+        html
+        javascript
+        jsdoc
         json
         lua
         markdown
@@ -43,6 +48,8 @@ in
         query
         rust
         scala
+        tsx
+        typescript
         vim
         vimdoc
         yaml
@@ -68,8 +75,12 @@ in
       lua-language-server
       metals
       nixd
+      prettier
       ripgrep
       rust-analyzer
+      typescript
+      typescript-language-server
+      vscode-langservers-extracted
     ];
   };
 

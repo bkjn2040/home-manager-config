@@ -47,15 +47,81 @@ vim.lsp.config("lua_ls", {
   },
 })
 
+vim.lsp.config("ts_ls", {
+  settings = {
+    javascript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "literals",
+        includeInlayPropertyDeclarationTypeHints = true,
+      },
+    },
+    typescript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "literals",
+        includeInlayPropertyDeclarationTypeHints = true,
+      },
+    },
+  },
+})
+
 vim.lsp.enable({
   "bashls",
   "clangd",
   "cmake",
+  "cssls",
+  "eslint",
+  "html",
+  "jsonls",
   "lua_ls",
   "metals",
   "nixd",
   "rust_analyzer",
+  "ts_ls",
 })
+
+local conform = require("conform")
+local prettier = { "prettier", stop_after_first = true }
+
+conform.setup({
+  formatters = {
+    -- Node-based formatters can lose piped stdin in some wrapped Neovim
+    -- environments. Conform safely writes and reads a temporary file instead.
+    prettier = {
+      args = { "--write", "$FILENAME" },
+      stdin = false,
+    },
+  },
+  formatters_by_ft = {
+    css = prettier,
+    html = prettier,
+    javascript = prettier,
+    javascriptreact = prettier,
+    json = prettier,
+    jsonc = prettier,
+    markdown = prettier,
+    scss = prettier,
+    typescript = prettier,
+    typescriptreact = prettier,
+    yaml = prettier,
+  },
+  format_on_save = {
+    timeout_ms = 2000,
+    lsp_format = "fallback",
+  },
+})
+
+vim.keymap.set({ "n", "v" }, "<leader>f", function()
+  conform.format({
+    async = true,
+    lsp_format = "fallback",
+  })
+end, { desc = "Format buffer or selection" })
 
 require("plugins.oil")
 require("plugins.telescope")
