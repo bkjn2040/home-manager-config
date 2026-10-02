@@ -41,6 +41,7 @@ in
         javascript
         jsdoc
         json
+        latex
         lua
         markdown
         markdown_inline
@@ -53,6 +54,7 @@ in
         vim
         vimdoc
         yaml
+        bibtex
       ]))
       oil-nvim
       plenary-nvim
@@ -62,6 +64,7 @@ in
       telescope-ui-select-nvim
       telescope-undo-nvim
       tokyonight-nvim
+      vimtex
     ];
 
     # Telescope calls these executables for fast file and text searches.
@@ -78,6 +81,7 @@ in
       prettier
       ripgrep
       rust-analyzer
+      texlab
       typescript
       typescript-language-server
       vscode-langservers-extracted

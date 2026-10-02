@@ -28,6 +28,13 @@ cmp.setup({
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+-- VimTeX owns compilation, document navigation, and SyncTeX integration.
+-- The TeX toolchain itself comes from each project's Nix development shell.
+vim.g.vimtex_compiler_method = "latexmk"
+vim.g.vimtex_view_method = "zathura"
+vim.g.vimtex_quickfix_mode = 0
+vim.g.vimtex_syntax_conceal_disable = 1
+
 -- nvim-lspconfig supplies server definitions; Nix supplies the executables.
 vim.lsp.config("*", {
   capabilities = capabilities,
@@ -82,6 +89,7 @@ vim.lsp.enable({
   "metals",
   "nixd",
   "rust_analyzer",
+  "texlab",
   "ts_ls",
 })
 

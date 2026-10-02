@@ -57,6 +57,9 @@
 
     pkgs.shotcut
 
+    # PDF viewer used by VimTeX for forward/inverse SyncTeX search.
+    pkgs.zathura
+
     pkgs.codex
   ];
 
@@ -117,6 +120,14 @@
 
   programs.bash.sessionVariables = {
     TERM = "xterm-color256";
+  };
+
+  # A project's .envrc can use `use flake` to enter its pinned toolchain.
+  # Run `direnv allow` once in each trusted project.
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
   };
 
   # Let Home Manager install and manage itself.
