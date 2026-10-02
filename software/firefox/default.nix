@@ -21,6 +21,41 @@
           Status = "default";
           Type = "boolean";
         };
+        "browser.urlbar.suggest.history" = {
+          Value = false;
+          Status = "locked";
+          Type = "boolean";
+        };
+        "browser.urlbar.maxHistoricalSearchSuggestions" = {
+          Value = 0;
+          Status = "locked";
+          Type = "number";
+        };
+        "browser.formfill.enable" = {
+          Value = false;
+          Status = "locked";
+          Type = "boolean";
+        };
+        "browser.urlbar.quicksuggest.enabled" = {
+          Value = false;
+          Status = "locked";
+          Type = "boolean";
+        };
+        "browser.urlbar.suggest.quicksuggest.nonsponsored" = {
+          Value = false;
+          Status = "locked";
+          Type = "boolean";
+        };
+        "browser.urlbar.suggest.quicksuggest.sponsored" = {
+          Value = false;
+          Status = "locked";
+          Type = "boolean";
+        };
+        "browser.urlbar.quicksuggest.dataCollection.enabled" = {
+          Value = false;
+          Status = "locked";
+          Type = "boolean";
+        };
       };
       OverrideFirstRunPage = "";
       ExtensionSettings = {
