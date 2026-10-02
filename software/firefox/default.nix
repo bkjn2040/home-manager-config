@@ -74,6 +74,11 @@
           installation_mode = "force_installed";
           blocked_uninstall = true;
         };
+        "jordanlinkwarden@gmail.com" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/linkwarden/latest.xpi";
+          installation_mode = "force_installed";
+          blocked_uninstall = true;
+        };
       };
       DisableAddons = true;
     };
