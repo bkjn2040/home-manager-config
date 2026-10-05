@@ -20,7 +20,7 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 
 opt.termguicolors = true
-opt.wrap = false
+opt.wrap = true
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"
 
