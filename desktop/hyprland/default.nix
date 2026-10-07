@@ -147,6 +147,7 @@ in
         (bind "SUPER + Q" ''hl.dsp.exec_cmd("hyprshutdown")'')
         (bind "SUPER + RETURN" ''hl.dsp.exec_cmd("kitty")'')
         (bind "SUPER + C" "hl.dsp.window.close()")
+        (bind "SUPER + SHIFT + S" ''hl.dsp.exec_cmd([[grim -g "$(slurp)" - | wl-copy]])'')
 
         (bind "SUPER + H" ''hl.dsp.focus({ direction = "l" })'')
         (bind "SUPER + J" ''hl.dsp.focus({ direction = "d" })'')
