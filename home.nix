@@ -73,6 +73,7 @@
     ./software/discord
     ./software/spotify
     ./software/kitty
+    ./software/kdeconnect
     ./software/neovim
     ./software/firefox
     ./software/git
